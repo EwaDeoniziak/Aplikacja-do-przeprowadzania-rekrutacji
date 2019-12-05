@@ -1,0 +1,36 @@
+<mat-toolbar class="navbar">
+    <div class="links" fxShow="true" fxHide.lt-sm="true">
+        <a routerLink="userMainPage" mat-button routerLinkActive="active-link">Strona główna</a>
+        <a routerLink="jobList" mat-button routerLinkActive="active-link">Lista ofert</a>
+        <a routerLink="contact" mat-button routerLinkActive="active-link">Kontakt</a>
+        <div class="dropdown" >
+            <a class="dropbtn" mat-button>
+                <mat-icon>person</mat-icon>
+                <mat-icon>arrow_drop_down</mat-icon>
+            </a>
+            <div class="dropdown-content">
+                <a routerLink="myApplications" mat-button routerLinkActive="active-link">Wysłane zgłoszenia</a>
+                <a mat-button>Wyloguj</a>
+            </div>
+        </div>
+    </div>
+    <div class="icon-div" fxShow="true" fxHide.gt-xs="true">
+        <a class="icon" (click)="sidenav.toggle()">
+            <mat-icon>dehaze</mat-icon>
+        </a>
+    </div>
+</mat-toolbar>
+<mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav fxLayout="column" class="side-nav">
+        <div fxLayout="column">
+            <a routerLink="userMainPage" mat-button routerLinkActive="active-link">Strona główna</a>
+            <a routerLink="jobList" mat-button routerLinkActive="active-link">Lista ofert</a>
+            <a routerLink="contact" mat-button routerLinkActive="active-link">Kontakt</a>
+            <a routerLink="myApplications" mat-button routerLinkActive="active-link">Wysłane zgłoszenia</a>
+            <a mat-button>Wyloguj</a>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

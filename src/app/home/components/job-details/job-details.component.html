@@ -1,0 +1,22 @@
+<div class="detailsButton">
+    <button mat-button color="primary" (click)="changeDetailsVisibility()">
+        {{text}} 
+    </button>
+</div>
+<span *ngIf="detailsVisibility">
+    <div class="details">
+        <h3>Opis stanowiska</h3>
+        {{offer.description}}  
+        <h3>Wymagania</h3>
+        {{offer.qualifications}}  
+        <h3>Obowiązki</h3>
+        {{offer.responsibilities}} 
+        <p *ngIf="applyButtonVisibility===false">
+            Aby aplikować na tę ofertę, musisz być zalogowany!
+        </p>
+        <div class="apply-button">
+            <button mat-raised-button class="main-button" (click)="apply(offer)" *ngIf="applyButtonVisibility">Aplikuj!</button>
+        </div>
+    </div>
+</span>
+

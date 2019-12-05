@@ -1,0 +1,24 @@
+<mat-toolbar class="navbar">
+    <div class="links" fxShow="true" fxHide.lt-sm="true">
+        <a routerLink="jobList" mat-button routerLinkActive="active-link">Oferty pracy</a>
+        <a routerLink="contact" mat-button routerLinkActive="active-link">Kontakt</a>
+        <a routerLink="auth" mat-button routerLinkActive="active-link">Zaloguj się</a>
+    </div>
+    <div class="icon-div" fxShow="true" fxHide.gt-xs="true">
+        <a class="icon" (click)="sidenav.toggle()">
+            <mat-icon>dehaze</mat-icon>
+        </a>
+    </div>
+</mat-toolbar>
+<mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav fxLayout="column" class="side-nav">
+        <div fxLayout="column">
+            <a routerLink="jobList" mat-button routerLinkActive="active-link">Oferty pracy</a>
+            <a routerLink="contact" mat-button routerLinkActive="active-link">Kontakt</a>
+            <a routerLink="auth" mat-button routerLinkActive="active-link">Zaloguj się</a>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

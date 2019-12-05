@@ -1,0 +1,27 @@
+@import './../../../shared/variables&mixins.scss';
+.box{
+    @include box;
+    width: 35%;
+    @media (max-width: 950px) {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        padding: 5%;
+    }
+}
+.inputField {
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+h2 {
+    margin-bottom: 40px;
+}
+main {
+    display: flex;
+    justify-content: space-around;
+    
+    @media (max-width: 950px) {
+        flex-direction: column;
+    }
+}

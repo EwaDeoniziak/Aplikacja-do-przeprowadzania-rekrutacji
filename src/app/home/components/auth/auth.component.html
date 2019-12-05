@@ -1,0 +1,62 @@
+<div class="content">
+    <main>
+        <div class="box">
+            <h2>Zaloguj się</h2>
+            <form>
+                <div>
+                    <mat-form-field class="inputField main-input" appearance="outline">
+                        <mat-label> Wprowadź swój adres e-mail</mat-label>
+                        <input matInput [formControl]="email2" required>
+                        <mat-error *ngIf="email2.invalid">{{getErrorEmail2Message()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="inputField main-input" appearance="outline">
+                        <mat-label>Wprowadź hasło</mat-label>
+                        <input required matInput [formControl]="password1" [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="password1.invalid">{{getErrorPassword1Message()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-raised-button class="main-button" type="submit">Zaloguj</button>
+            </form>
+        </div>
+        <div class="box">
+            <h2>Nie posiadasz konta? Zarejestruj się!</h2>
+            <form>
+                <div>
+                    <mat-form-field class="inputField main-input" appearance="outline">
+                        <mat-label>Wprowadź adres e-mail</mat-label>
+                        <input matInput [formControl]="email1" required>
+                        <mat-error *ngIf="email1.invalid">{{getErrorEmail1Message()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="inputField main-input" appearance="outline">
+                        <mat-label>Wprowadź hasło</mat-label>
+                        <input required matInput [formControl]="password2" [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="password2.invalid">{{getErrorPassword2Message()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="inputField main-input" appearance="outline">
+                        <mat-label>Powtórz hasło</mat-label>
+                        <input required matInput [formControl]="password3" [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="password3.invalid">{{getErrorPassword3Message()}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-raised-button class="main-button" type="submit">Zarejestruj się</button>
+            </form>
+            <a routerLink="../../userHome" (click)="changeIsLoggedIn(true)">Zaloguj do użytkownika </a>
+            <a href="../../adminHome">Zaloguj do administratora</a>
+        </div>
+    </main>
+</div>

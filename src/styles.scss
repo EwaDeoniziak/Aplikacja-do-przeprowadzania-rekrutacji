@@ -1,1 +1,134 @@
 /* You can add global styles to this file, and also import other style files */
+@import './app/shared/variables&mixins.scss';
+html, body { height: 100%; }
+body {
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: $light-gray;
+    ul {
+        margin: 0;
+        padding: 0;
+        li{
+            list-style: none;
+        }
+    }
+    button{
+       &.x {
+            float: right;
+            background: none;
+            border: none;
+            outline: none;
+            &:hover{
+                cursor: pointer;
+            }
+        } 
+    }
+    h3{
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-size: 13px;
+        @media (max-width: 600px) {
+            font-size: 10px;
+        }
+    }
+    h2 {
+        letter-spacing: 1.5px;
+        color: $second-color;
+        font-size: 30px;
+        @media (max-width: 600px) {
+            font-size: 20px;
+        }
+    }
+    main{
+        margin: 30px;
+        @media (max-width: 600px) {
+            margin: 15px;
+        }
+    }
+    .content {
+        padding-top: 60px;
+    }
+    //navigation
+    .active-link{
+        background-color: $dim;
+    }
+    .navbar{
+        background-color: $first-color;
+        background-image: $blue-gradient;
+        color: white;
+        text-align: right;
+        box-shadow: $bottom-shadow;
+        width: 100%;
+        position: fixed;
+        z-index: 3;
+        .links {
+            width: 100%;
+            a{
+                padding:10px 50px 10px 50px;
+            }
+        }
+    }
+    .side-nav {
+        padding-top: 70px;
+        width: 50%;
+        a{
+            padding:30px;
+        }
+    }
+    .icon-div{
+        padding-top: 10px;
+        a {
+            &.icon {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .main-button {
+        background-color: $first-color;
+        color: white;
+        padding: 10px 20px 10px 20px;
+        @media (max-width: 600px) {
+            font-size: 12px;
+            padding: 7px 14px 7px 14px;
+        }
+    }
+}
+@media (max-width: 700px) {
+    .mat-tab-group {
+    flex-direction: row;
+    }
+    .mat-tab-header {
+    border-bottom: none;
+    }
+    .mat-tab-header-pagination {
+        display: none !important;
+    }
+    .mat-tab-labels {
+        flex-direction: column;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $light-gray;
+    }
+    .mat-tab-body-wrapper {
+        flex: 1 1 auto;
+    }
+    .mat-ink-bar {
+        display: none;
+    }
+    .mat-tab-label {
+        border-left: 2px solid $light-gray;
+    }
+    .mat-tab-label-active {
+        border-left: 3px solid lighten($first-color, 30);
+    }
+}
+@media (max-width: 350px) {
+    .mat-tab-label-content{
+        width: 90%;
+        font-size: 12px;
+    }
+}
+.main-input {
+    font-size: 12px;
+}

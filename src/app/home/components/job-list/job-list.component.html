@@ -1,0 +1,16 @@
+<div class="container">
+    <header>
+        <input placeholder="Wyszukaj ofertę" [(ngModel)]="searchInput">
+    </header>
+    <main>
+        <ul>
+            <li class="list-item" *ngFor="let item of jobOffers | search: searchInput">
+                <div class="offer">
+                    <div class="leftSide">{{item.name | uppercase}} </div>
+                    <div class="rightSide">{{item.salary}} zł/brutto</div>
+                </div>
+                <app-job-details [offer]="item"></app-job-details>
+            </li>
+        </ul>
+    </main>
+</div>

@@ -1,0 +1,38 @@
+//colors
+$light-gray:rgb(231, 227, 227);
+$first-color:rgb(58, 39, 126);
+$dim: rgba(192, 192, 192, 0.123);
+$second-color: rgb(231, 27, 78);
+$third-color: rgb(118, 80, 168);
+$dark-gray: rgb(77, 75, 75);
+
+//other
+$shadow: 0px 0px 6px 0px rgba(204,204,204,1);
+$bottom-shadow: 0px 7px 6px -5px rgba(46, 45, 45, 0.466);
+$blue-gradient: linear-gradient(to bottom right, $third-color, $first-color);
+
+//mixins 
+@mixin small-text {
+    font-size: 15px;
+    color: $second-color;
+    font-weight: 600;
+    @media (max-width: 600px) {
+        font-size: 10px;
+    }
+}
+
+@mixin gray-text {
+    font-size: 20px;
+    color: $dark-gray;
+    font-weight: 600;
+    letter-spacing: 2px;
+    @media (max-width: 600px) {
+        font-size: 15px;
+    }
+}
+
+@mixin box {
+    background-color: white;
+    padding: 40px;
+    box-shadow: $shadow;
+}
