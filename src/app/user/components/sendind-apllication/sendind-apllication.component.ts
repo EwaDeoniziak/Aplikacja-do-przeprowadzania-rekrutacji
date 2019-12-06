@@ -13,14 +13,19 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
   id: number;
   offer: Offer = null;
   subscription: Subscription;
+  jobOffers: Offer[];
   constructor(private route: ActivatedRoute, private offersService: OffersService) {
     this.subscription = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
-    this.offer = this.offersService.jobOffers.filter(el => el.id === this.id)[0];
-    console.log(this.offer);
+    //this.offer = this.offersService.jobOffers.filter(el => el.id === this.id)[0];
+    //console.log(this.offer);
+    this.offersService.jobOffers$.subscribe(el => {
+      this.jobOffers=el;
+      this.offer = this.jobOffers.filter(el => el.id === this.id)[0];
+    });
   }
-
+  
   ngOnInit() {
     console.log(this.id);
   }

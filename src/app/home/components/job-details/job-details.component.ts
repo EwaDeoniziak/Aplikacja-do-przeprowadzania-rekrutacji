@@ -31,7 +31,7 @@ export class JobDetailsComponent implements OnInit {
     }
   }
   apply(offer: Offer) {
-    this.router.navigate(['/../../../userHome/sendingApplication', offer.id]);
+    this.router.navigate(['/../../../userPanel/sendingApplication', offer.id]);
   }
 
 

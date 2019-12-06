@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { Offer } from 'src/app/shared/interfaces';
+import { Observable, BehaviorSubject, from } from 'rxjs';
+import { Offer, Offer2, Post, Skill } from 'src/app/shared/interfaces';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OffersService {
-  detailsVisibility = false;
 
-  jobOffers: Offer[] = [
+  detailsVisibility = false;
+  loaded: Promise<boolean>;
+  jobOffers: Offer[];
+  //posts: Post[];
+  //skills: Skill[];
+  jobOffers$: Observable<Offer[]>;
+  jobOffers2: Offer2[] = [
     {
       id: 1, name: 'PHP developer',
       description: 'Przykładowy opis na stanowisko PHP developer',
@@ -41,6 +49,19 @@ export class OffersService {
     },
   ];
 
-  constructor() {
+  constructor(private http: HttpClient, private httpService: HttpService) {
+    //this.getOffers().subscribe(el => console.log(el));
+    this.httpService.getOffers().subscribe((el: Offer[]) => this.jobOffers = el)
+    this.jobOffers$=this.httpService.getOffers();
+  }
+
+   getOffers(){
+    this.httpService.getOffers().subscribe((el: Offer[]) => this.jobOffers = el);
+   }
+   getPosts() {
+    return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts');
+   }
+   getSkills() {
+     return this.http.get<Skill[]>('/api/skills');
    }
 }

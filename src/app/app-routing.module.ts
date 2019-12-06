@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/components/home/home.component';
-import { UserHomeComponent } from './user/components/user-home/user-home.component';
+import { UserPanelComponent } from './user/components/user-panel/user-panel.component';
 import { JobListComponent } from './home/components/job-list/job-list.component';
 import { ContactComponent } from './home/components/contact/contact.component';
 import { AuthComponent } from './home/components/auth/auth.component';
-import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
+import { AdminPanelComponent } from './admin/components/admin-panel/admin-panel.component';
 import { UserMainPageComponent } from './user/components/user-main-page/user-main-page.component';
 import { MyApplicationsComponent } from './user/components/my-applications/my-applications.component';
 import { SendindApllicationComponent } from './user/components/sendind-apllication/sendind-apllication.component';
+import { AdminMainPageComponent } from './admin/components/admin-main-page/admin-main-page.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -18,7 +19,7 @@ const routes: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'auth', component: AuthComponent}
   ]},
-  {path: 'userHome', component: UserHomeComponent, children: [
+  {path: 'userPanel', component: UserPanelComponent, children: [
     {path: '', redirectTo: 'userMainPage', pathMatch: 'full'},
     {path: 'userMainPage', component: UserMainPageComponent},
     {path: 'jobList', component: JobListComponent},
@@ -26,7 +27,10 @@ const routes: Routes = [
     {path: 'sendingApplication/:id', component: SendindApllicationComponent},
     {path: 'contact', component: ContactComponent},
   ]},
-  {path: 'adminHome', component: AdminHomeComponent},
+  {path: 'adminPanel', component: AdminPanelComponent, children: [
+    {path: '', redirectTo: 'adminMainPage', pathMatch: 'full'},
+    {path: 'adminMainPage', component: AdminMainPageComponent},
+  ]},
 ];
 
 @NgModule({

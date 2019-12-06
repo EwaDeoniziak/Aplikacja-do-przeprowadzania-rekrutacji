@@ -5,11 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/components/home/home.component';
-import { UserHomeComponent } from './user/components/user-home/user-home.component';
+import { UserPanelComponent } from './user/components/user-panel/user-panel.component';
 import { JobListComponent } from './home/components/job-list/job-list.component';
 import { ContactComponent } from './home/components/contact/contact.component';
 import { AuthComponent } from './home/components/auth/auth.component';
-import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
+import { AdminPanelComponent } from './admin/components/admin-panel/admin-panel.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -27,17 +27,18 @@ import { UserMainPageComponent } from './user/components/user-main-page/user-mai
 import { MyApplicationsComponent } from './user/components/my-applications/my-applications.component';
 import { SendindApllicationComponent } from './user/components/sendind-apllication/sendind-apllication.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    UserHomeComponent,
+    UserPanelComponent,
     JobListComponent,
     ContactComponent,
     AuthComponent,
-    AdminHomeComponent,
+    AdminPanelComponent,
     JobDetailsComponent,
     SearchPipe,
     AdminMainPageComponent,
@@ -52,6 +53,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
+    HttpClientModule,
     //material modules
     MatButtonModule,
     MatTabsModule,
