@@ -11,8 +11,7 @@ import { HttpService } from './http.service';
 export class OffersService {
 
   detailsVisibility = false;
-  loaded: Promise<boolean>;
-  jobOffers: Offer[];
+  //jobOffers: Offer[];
   //posts: Post[];
   //skills: Skill[];
   jobOffers$: Observable<Offer[]>;
@@ -51,17 +50,7 @@ export class OffersService {
 
   constructor(private http: HttpClient, private httpService: HttpService) {
     //this.getOffers().subscribe(el => console.log(el));
-    this.httpService.getOffers().subscribe((el: Offer[]) => this.jobOffers = el)
+    //this.httpService.getOffers().subscribe((el: Offer[]) => this.jobOffers = el)
     this.jobOffers$=this.httpService.getOffers();
   }
-
-   getOffers(){
-    this.httpService.getOffers().subscribe((el: Offer[]) => this.jobOffers = el);
-   }
-   getPosts() {
-    return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts');
-   }
-   getSkills() {
-     return this.http.get<Skill[]>('/api/skills');
-   }
 }

@@ -28,7 +28,10 @@ import { MyApplicationsComponent } from './user/components/my-applications/my-ap
 import { SendindApllicationComponent } from './user/components/sendind-apllication/sendind-apllication.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatSidenavModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

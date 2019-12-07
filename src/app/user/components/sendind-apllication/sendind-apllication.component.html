@@ -1,44 +1,93 @@
 <main>
-    <div class="box" *ngIf="offer">
+    <div class="box" *ngIf="offer; else spinner">
         <h2>Aplikuj na stanowisko '{{offer.name}}'</h2>
         <form>
             <mat-tab-group class="my-tabs" mat-align-tabs="center">
                 <mat-tab label="Dane osobowe"> 
                     <div class="content">
-                        <h3>Dane osobowe</h3>
+                        <h3>Wprowadź swoje dane osobowe</h3>
                         <div class="input-div">
                             <mat-form-field class="application-input main-input" appearance="outline">
                                 <mat-label>Imię</mat-label>
-                                <input matInput required>
+                                <input matInput required name="firstname" [(ngModel)]="firstname">
                             </mat-form-field>
                         </div>
                         <div class="input-div">
                             <mat-form-field class="application-input main-input" appearance="outline">
                                 <mat-label>Nazwisko</mat-label>
-                                <input matInput required>
+                                <input matInput required name="lastname" [(ngModel)]="lastname">
                             </mat-form-field>
                         </div>
                         <div class="input-div">
                             <mat-form-field class="application-input main-input" appearance="outline">
                                 <mat-label>Nr telefonu</mat-label>
-                                <input matInput required>
+                                <input matInput required name="pnoneNumber" [(ngModel)]="phoneNumber">
                             </mat-form-field>
                         </div>
                         <div class="input-div">
                             <mat-form-field class="application-input main-input" appearance="outline">
                                 <mat-label>Miasto</mat-label>
-                                <input matInput required>
+                                <input matInput required name="city" [(ngModel)]="city">
                             </mat-form-field>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab class="mat-tab-labels" label="Wykształcenie i doświadczenie">
-                    <div class="content">Wykształcenie i doświadczenie</div>
+                    <div class="content">
+                        <div class="options">
+                        <h3>Jakie posiadasz wykształcenie?</h3>
+                        <mat-radio-group aria-label="Select an option" [(ngModel)]="education" name="education">
+                            <div class="radioOption">
+                                <mat-radio-button (click)="changeUniversityValue()" value="1">Podstawowe</mat-radio-button>
+                            </div>
+                            <div class="radioOption">
+                                <mat-radio-button (click)="changeUniversityValue()" value="2">Średnie</mat-radio-button>
+                            </div>
+                            <div class="radioOption">
+                                <mat-radio-button value="3">Wyższe</mat-radio-button>
+                            </div>
+                        </mat-radio-group>
+                        <span *ngIf="education==='3'" class="space">
+                            <mat-form-field class="application-input main-input" appearance="outline">
+                                <mat-label>Podaj nazwę uczelni</mat-label>
+                                <input matInput name="university" [(ngModel)]="university">
+                            </mat-form-field>
+                            <mat-form-field class="application-input main-input" appearance="outline">
+                                <mat-label>Podaj nazwę kierunku</mat-label>
+                                <input matInput name="field" [(ngModel)]="fieldOfStudy">
+                            </mat-form-field>
+                        </span>
+                        <div class="space">
+                        <h3>Jakie było twoje poprzednie stanowisko?</h3>
+                        <mat-form-field class="application-input main-input" appearance="outline">
+                            <mat-label>Podaj stanowisko i firmę</mat-label>
+                            <input matInput name="previousJob" [(ngModel)]="previousJob">
+                        </mat-form-field>
+                        </div>
+                    </div>
+                    </div>
                 </mat-tab>
                 <mat-tab label="Umiejętności"> 
-                    <div class="content">Umiejętności </div>
+                    <div class="content">
+                        <h3>Zaznacz umiejętności, które posiadasz</h3>
+                        <mat-selection-list #Skills (selectionChange)="onSelection($event, Skills.selectedOptions.selected)">
+                            <mat-list-option *ngFor="let skill of offer.skills" [value]='skill'>
+                                <p>{{skill.name}}</p>
+                            </mat-list-option>
+                        </mat-selection-list>
+                    </div>
                 </mat-tab>
             </mat-tab-group>
         </form>
     </div>
+    <ng-template #spinner>
+        <mat-progress-spinner class="spinner"
+        [color]="color"
+        [mode]="mode"
+        [value]="value">
+        </mat-progress-spinner>
+    </ng-template>
 </main>
+<button (click)="test()">
+    Kliknij
+</button>

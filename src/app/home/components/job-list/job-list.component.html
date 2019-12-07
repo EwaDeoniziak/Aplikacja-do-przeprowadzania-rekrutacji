@@ -3,7 +3,7 @@
         <input placeholder="Wyszukaj ofertę" [(ngModel)]="searchInput">
     </header>
     <main>
-        <ul *ngIf="jobOffers">
+        <ul *ngIf="jobOffers; else spinner">
             <li class="list-item" *ngFor="let item of jobOffers | search: searchInput">
                 <div class="offer">
                     <div class="leftSide">{{item.name | uppercase}} </div>
@@ -12,18 +12,13 @@
                 <app-job-details [offer]="item"></app-job-details>
             </li>
         </ul>
+        <ng-template #spinner>
+            <mat-progress-spinner class="spinner"
+            [color]="color"
+            [mode]="mode"
+            [value]="value">
+            </mat-progress-spinner>
+        </ng-template>
     </main>
 </div>
 
-
-<ul>
-    <li *ngFor="let item of jobOffers">
-        {{item.name}}
-        <ol *ngFor="let skill of item.skills">
-            {{skill.name}}
-
-        </ol>
-    </li>
-</ul>
-
-<button (click)="show()">Kliknij</button>
