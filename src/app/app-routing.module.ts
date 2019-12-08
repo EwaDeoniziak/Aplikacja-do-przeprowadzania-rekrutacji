@@ -10,6 +10,9 @@ import { UserMainPageComponent } from './user/components/user-main-page/user-mai
 import { MyApplicationsComponent } from './user/components/my-applications/my-applications.component';
 import { SendindApllicationComponent } from './user/components/sendind-apllication/sendind-apllication.component';
 import { AdminMainPageComponent } from './admin/components/admin-main-page/admin-main-page.component';
+import { YourOffersComponent } from './admin/components/your-offers/your-offers.component';
+import { AddOfferComponent } from './admin/components/add-offer/add-offer.component';
+import { ApplicationsComponent } from './admin/components/applications/applications.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -30,6 +33,9 @@ const routes: Routes = [
   {path: 'adminPanel', component: AdminPanelComponent, children: [
     {path: '', redirectTo: 'adminMainPage', pathMatch: 'full'},
     {path: 'adminMainPage', component: AdminMainPageComponent},
+    {path: 'yourOffers', component: YourOffersComponent},
+    {path: 'addOffer', component: AddOfferComponent},
+    {path: 'applications', component: ApplicationsComponent},
   ]},
 ];
 

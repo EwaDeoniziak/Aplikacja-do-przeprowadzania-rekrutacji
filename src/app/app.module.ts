@@ -32,6 +32,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
+import { YourOffersComponent } from './admin/components/your-offers/your-offers.component';
+import { AddOfferComponent } from './admin/components/add-offer/add-offer.component';
+import { ApplicationsComponent } from './admin/components/applications/applications.component';
+import { BoldPipe } from './shared/pipes/bold.pipe';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,10 @@ import {MatListModule} from '@angular/material/list';
     UserMainPageComponent,
     MyApplicationsComponent,
     SendindApllicationComponent,
+    YourOffersComponent,
+    AddOfferComponent,
+    ApplicationsComponent,
+    BoldPipe,
   ],
   imports: [
     BrowserModule,

@@ -13,13 +13,13 @@ export interface Post {
   body: string;
 }
 export interface Skill {
-    id: number;
+    id?: number;
     name: string;
     description: string;
     points: number;
-    created_at: null;
-    updated_at: null;
-    pivot: {
+    created_at?: null;
+    updated_at?: null;
+    pivot?: {
         offer_id: number;
         skill_id: number;
     };
@@ -34,5 +34,13 @@ export interface Offer {
     created_at: null;
     updated_at: null;
     skills: Skill[];
-
+}
+export interface newOffer {
+    name:string;
+    description: string;
+    qualifications: string;
+    responsibilities: string;
+    salary: number;
+    skills: Skill[];
+    skills_id: number[];
 }

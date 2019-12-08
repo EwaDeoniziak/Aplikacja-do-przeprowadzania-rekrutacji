@@ -15,6 +15,7 @@ export class OffersService {
   //posts: Post[];
   //skills: Skill[];
   jobOffers$: Observable<Offer[]>;
+  skills$: Observable<Skill[]>;
   jobOffers2: Offer2[] = [
     {
       id: 1, name: 'PHP developer',
@@ -52,5 +53,6 @@ export class OffersService {
     //this.getOffers().subscribe(el => console.log(el));
     //this.httpService.getOffers().subscribe((el: Offer[]) => this.jobOffers = el)
     this.jobOffers$=this.httpService.getOffers();
+    this.skills$=this.httpService.getSkills();
   }
 }

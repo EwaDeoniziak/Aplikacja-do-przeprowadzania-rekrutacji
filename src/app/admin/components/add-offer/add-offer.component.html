@@ -1,0 +1,106 @@
+<main>
+    <div class="box">
+        <h2>Dodaj nową ofertę</h2>
+        <form #addOfferForm="ngForm">
+            <mat-tab-group class="my-tabs" mat-align-tabs="center">
+                <mat-tab label="Podstawowe dane">
+                    <div class="content">
+                        <div class="input-div">
+                            <mat-form-field class="newOffer-input main-input" appearance="outline">
+                                <mat-label>Nazwa stanowiska</mat-label>
+                                <input matInput required name="offerName" [(ngModel)]="offerName">
+                            </mat-form-field>
+                        </div>
+                        <div class="input-div">
+                            <mat-form-field class="newOffer-input main-input" appearance="outline">
+                                <mat-label>Wynagrodzenie</mat-label>
+                                <input matInput required type="number" name="salary" [(ngModel)]="salary">
+                            </mat-form-field>
+                        </div>
+                        <div class="input-div">
+                            <mat-form-field appearance="outline" class="newOffer-input main-input">
+                                <mat-label>Opis stanowiska</mat-label>
+                                <textarea class="my-text-area" matInput required placeholder="" name="offerDescription"
+                                    [(ngModel)]="offerDescription"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="input-div">
+                            <mat-form-field appearance="outline" class="newOffer-input main-input">
+                                <mat-label>Wymagania</mat-label>
+                                <textarea class="my-text-area" matInput required placeholder="" name="qualifications"
+                                    [(ngModel)]="qualifications"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div class="input-div">
+                            <mat-form-field appearance="outline" class="newOffer-input main-input">
+                                <mat-label>Obowiązki</mat-label>
+                                <textarea class="my-text-area" matInput required placeholder="" name="responsibilities"
+                                    [(ngModel)]="responsibilities"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Wymagane umiejętności">
+                    <div class="content">
+                        <h3>Wymagane umiejętności</h3>
+                        <h3 class="smaller">Wybierz z poniższych i/lub dodaj nowe</h3>
+                        <mat-selection-list *ngIf="skillsToCheck; else spinner" #Skills
+                            (selectionChange)="onSelection($event, Skills.selectedOptions.selected)">
+                            <mat-list-option *ngFor="let skill of skillsToCheck" [value]='skill'>
+                                <p style="font-weight: 600;">{{skill.name}}</p>
+                                <p>Punkty: {{skill.points}}</p>
+                                <p>Opis: {{skill.description}}</p>
+                            </mat-list-option>
+                        </mat-selection-list>
+                        <ng-template #spinner>
+                            <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+                            </mat-progress-spinner>
+                        </ng-template>
+                        <button mat-stroked-button (click)="showNewSkillForm()" class="outline-button">Dodaj inne
+                            umiejętności</button>
+                        <div class="skill-form" *ngIf="newSkillVisibility">
+                            <div class="input-div">
+                                <mat-form-field class="newOffer-input main-input" appearance="outline">
+                                    <mat-label>Nazwa umiejętności</mat-label>
+                                    <input matInput name="skillName" [(ngModel)]="skillName">
+                                </mat-form-field>
+                            </div>
+                            <div class="input-div">
+                                <mat-form-field class="newOffer-input main-input" appearance="outline">
+                                    <mat-label>Liczba punktów</mat-label>
+                                    <input matInput type="number" name="points" [(ngModel)]="points">
+                                </mat-form-field>
+                            </div>
+                            <div class="input-div">
+                                <mat-form-field appearance="outline" class="newOffer-input main-input">
+                                    <mat-label>Opis</mat-label>
+                                    <textarea class="my-text-area" matInput placeholder=""
+                                        name="skillDescription" [(ngModel)]="skillDescription"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <button mat-stroked-button (click)="addSkill()" class="outline-button">Dodaj nową umiejętność</button>
+                            <p class="invalid" *ngIf="invalidMessageVisibility">Wypełnij wszystkie pola</p>
+                            <h3 class="top-space">Nowe umiejętności:</h3>
+                            <ul *ngIf="skills">
+                                <li *ngFor="let skill of skills">
+                                    <div class="new-skill">
+                                        <div class="left-side">
+                                            <p style="font-weight: 600;">{{skill.name}}</p>
+                                            <p>Punkty: {{skill.points}}</p>
+                                            <p>Opis: {{skill.description}}</p>
+                                        </div>
+                                        <div><button class="x" (click)="deleteSkill(skill)"><mat-icon>delete</mat-icon></button></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="addOfferForm.invalid" mat-raised-button class="main-button" (click)="addOffer()">Dodaj ofertę</button>
+                </mat-tab>
+            </mat-tab-group>
+        </form>
+        <button (click)="test()">
+            Kliknij
+        </button>
+    </div>
+</main>
