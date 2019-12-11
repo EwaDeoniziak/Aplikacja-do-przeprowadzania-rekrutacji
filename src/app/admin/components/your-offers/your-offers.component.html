@@ -1,1 +1,54 @@
-<p>your-offers works!</p>
+<div class="container">
+    <header>
+        <input placeholder="Wyszukaj ofertę" [(ngModel)]="searchInput">
+    </header>
+    <main>
+        <div class="offers" *ngIf="yourOffers; else spinner">
+            <div class="box">
+                <h2>Twoje oferty</h2>
+            </div>
+            <mat-accordion class="my-expansion-panel offers">
+                <mat-expansion-panel class="offers" *ngFor="let item of yourOffers | search: searchInput">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h4>{{item.name | uppercase}}</h4>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="offers">
+                        <h3>Opis stanowiska</h3>
+                        {{item.description}}
+                        <h3>Obowiązki</h3>
+                        {{item.responsibilities}}
+                        <h3>Wymagania</h3>
+                        {{item.qualifications}}
+                        <h3>Wynagrodzenie</h3>
+                        {{item.salary}} zł 
+                        <h3>Wymagane umiejętności</h3>
+                        <ul>
+                            <li *ngFor="let skill of item.skills">
+
+                                <div class="header">
+                                    <p class="title">{{skill.name}}</p>
+                                    <p class="pink">Punkty: {{skill.points}}</p>
+                                </div>
+                                <p>Opis: {{skill.description}}</p>
+                            </li>
+                        </ul>
+                        <h3>Opcje</h3>
+                        <button mat-button>
+
+                            <mat-icon class="pink">edit</mat-icon>Edytuj
+                        </button>
+                        <button mat-button>
+
+                            <mat-icon class="pink">delete</mat-icon>Usuń
+                        </button>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <ng-template #spinner>
+            <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">
+            </mat-progress-spinner>
+        </ng-template>
+    </main>

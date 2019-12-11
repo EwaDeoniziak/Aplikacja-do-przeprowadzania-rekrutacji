@@ -46,11 +46,13 @@
                         <h3 class="smaller">Wybierz z poniższych i/lub dodaj nowe</h3>
                         <mat-selection-list *ngIf="skillsToCheck; else spinner" #Skills
                             (selectionChange)="onSelection($event, Skills.selectedOptions.selected)">
-                            <mat-list-option *ngFor="let skill of skillsToCheck" [value]='skill'>
-                                <p style="font-weight: 600;">{{skill.name}}</p>
-                                <p>Punkty: {{skill.points}}</p>
-                                <p>Opis: {{skill.description}}</p>
-                            </mat-list-option>
+                            <div class="skillsList">
+                                <mat-list-option *ngFor="let skill of skillsToCheck" [value]='skill'>
+                                    <p style="font-weight: 600;">{{skill.name}}</p>
+                                    <p>Punkty: {{skill.points}}</p>
+                                    <p>Opis: {{skill.description}}</p>
+                                </mat-list-option>
+                            </div>
                         </mat-selection-list>
                         <ng-template #spinner>
                             <mat-progress-spinner class="spinner" [color]="color" [mode]="mode" [value]="value">

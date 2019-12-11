@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { OffersService } from 'src/app/home/services/offers.service';
 import { Subscribable, Subscription } from 'rxjs';
 import { Skill, newOffer } from 'src/app/shared/interfaces';
 import { HttpService } from 'src/app/home/services/http.service';
+import { MatSelectionList } from '@angular/material';
 
 @Component({
   selector: 'app-add-offer',
@@ -11,7 +12,7 @@ import { HttpService } from 'src/app/home/services/http.service';
 })
 export class AddOfferComponent implements OnInit, OnDestroy {
   offerName = '';
-  salary:number= null;
+  salary: number = null;
   offerDescription = '';
   responsibilities = '';
   qualifications = '';
@@ -27,12 +28,15 @@ export class AddOfferComponent implements OnInit, OnDestroy {
   skillsToCheck: Skill[];
 
   selectedOptions = [];
-  skills_id:number[]=[];
+  @ViewChild('Skills',{static: false}) Skills: MatSelectionList;
+
+  //skills to send
+  skills_id: number[] = [];
   skills: Skill[] = [];
 
   invalidMessageVisibility = false;
 
-  
+
   //SPINNER
   color = 'primary';
   mode = 'indeterminate';
@@ -45,48 +49,57 @@ export class AddOfferComponent implements OnInit, OnDestroy {
       this.skills_id.push(this.selectedOptions[i].value.id);
     }
     console.log(this.skills_id);
-}
-
-showNewSkillForm() {
-  this.newSkillVisibility=true;
-}
-
-addSkill() {
-  if(this.skillName && this.skillDescription && this.points) {
-    const skill: Skill = {name: this.skillName, description: this.skillDescription, points:this.points}
-    this.skills.push(skill);
-    this.skillName='';
-    this.skillDescription='';
-    this.points=null;
-    this.invalidMessageVisibility = false;
   }
-  else {
-    this.invalidMessageVisibility = true;
+
+  showNewSkillForm() {
+    this.newSkillVisibility = true;
   }
-}
 
-deleteSkill(skill: Skill) {
-  this.skills = this.skills.filter(el => el!==skill);
-}
+  addSkill() {
+    if (this.skillName && this.skillDescription && this.points) {
+      const skill: Skill = { name: this.skillName, description: this.skillDescription, points: this.points }
+      this.skills.push(skill);
+      this.skillName = '';
+      this.skillDescription = '';
+      this.points = null;
+      this.invalidMessageVisibility = false;
+    }
+    else {
+      this.invalidMessageVisibility = true;
+    }
+  }
 
-addOffer(){
-   const newOffer: newOffer = {
+  deleteSkill(skill: Skill) {
+    this.skills = this.skills.filter(el => el !== skill);
+  }
+
+  addOffer() {
+    const newOffer: newOffer = {
       name: this.offerName,
-      description:this.offerDescription,
+      description: this.offerDescription,
       salary: this.salary,
       qualifications: this.qualifications,
       responsibilities: this.responsibilities,
       skills: this.skills,
       skills_id: this.skills_id
+    }
+    console.log(newOffer);
+    this.http.addOffer(newOffer).subscribe(el => console.log(el));
+    this.offerService.jobOffers$.subscribe(el => console.log(el));
+
+    // empty values after addOffer
+    this.offerName = '';
+    this.salary = null;
+    this.offerDescription = '';
+    this.responsibilities = '';
+    this.qualifications = '';
+    this.Skills.deselectAll();
+    this.skills = [];
   }
-  console.log(newOffer);
-  this.http.addOffer(newOffer).subscribe(el => console.log(el));
-  this.offerService.jobOffers$.subscribe(el => console.log(el));
-}
 
   constructor(private offerService: OffersService, private http: HttpService) {
-    this.skillsSubscription = this.offerService.skills$.subscribe(el => this.skillsToCheck=el);
-   }
+    this.skillsSubscription = this.offerService.skills$.subscribe(el => this.skillsToCheck = el);
+  }
 
   ngOnInit() {
   }
@@ -95,7 +108,7 @@ addOffer(){
     this.skillsSubscription.unsubscribe();
   }
 
-  test(){
+  test() {
     console.log(this.offerName)
     console.log(this.salary)
     console.log(this.offerDescription)

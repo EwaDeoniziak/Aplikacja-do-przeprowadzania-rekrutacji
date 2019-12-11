@@ -1,0 +1,63 @@
+@import './../../../shared/variables&mixins.scss';
+.container {
+    header{
+        background-color: $first-color;
+        padding-top: 60px;
+        input{
+            padding:10px;
+            margin: 20px 30px 20px 30px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            width: 500px;
+            background-color: $dim;
+            color: #fff;
+            @media (max-width: 600px) {
+                margin:20px 5% 20px 5%;
+                width: 80%;
+            }
+        }
+    }
+}
+.box{
+    @include box;
+    margin-top: 100px;
+}
+.offers{
+    @media (max-width: 600px) {
+        font-size: 10px;
+    }
+    p{
+        &.title {
+            font-weight: 600;
+        }
+    }
+    
+}
+.spinner{
+    margin-top: 100px;
+}
+ul{
+    max-width: 300px;
+    li{
+        .header{
+            display: flex; 
+       justify-content: space-between;
+        }
+       border-bottom: 1px solid $light-gray;
+    }
+    
+}
+h3{
+    margin-top: 30px;
+}
+button {
+    margin: 20px;
+    mat-icon{
+        padding: 10px;
+    }
+}
+ 
+.pink{
+    color: $second-color;
+}

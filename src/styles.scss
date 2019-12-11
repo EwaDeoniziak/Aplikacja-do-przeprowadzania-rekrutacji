@@ -39,6 +39,10 @@ body {
             font-size: 20px;
         }
     }
+    h4{
+        letter-spacing: 1.5px;
+        color: darken($first-color, 10);
+    }
     main{
         margin: 30px;
         @media (max-width: 600px) {
