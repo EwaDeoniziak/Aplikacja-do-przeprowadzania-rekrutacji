@@ -3,7 +3,7 @@
         <h2>Aplikuj na stanowisko '{{offer.name}}'</h2>
         <form>
             <mat-tab-group class="my-tabs" mat-align-tabs="center">
-                <mat-tab label="Dane osobowe"> 
+                <mat-tab label="1. Dane osobowe"> 
                     <div class="content">
                         <h3>Wprowadź swoje dane osobowe</h3>
                         <div class="input-div">
@@ -20,6 +20,14 @@
                         </div>
                         <div class="input-div">
                             <mat-form-field class="application-input main-input" appearance="outline">
+                                <mat-label>Data urodzenia</mat-label>
+                                <input matInput [matDatepicker]="myDatepicker" name="date" [(ngModel)]="date">
+                                <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                                <mat-datepicker #myDatepicker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="input-div">
+                            <mat-form-field class="application-input main-input" appearance="outline">
                                 <mat-label>Nr telefonu</mat-label>
                                 <input matInput required name="pnoneNumber" [(ngModel)]="phoneNumber">
                             </mat-form-field>
@@ -32,7 +40,7 @@
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab class="mat-tab-labels" label="Wykształcenie i doświadczenie">
+                <mat-tab class="mat-tab-labels" label="2. Wykształcenie i doświadczenie">
                     <div class="content">
                         <div class="options">
                         <h3>Jakie posiadasz wykształcenie?</h3>
@@ -67,9 +75,9 @@
                     </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="Umiejętności"> 
+                <mat-tab label="3. Wymagania"> 
                     <div class="content">
-                        <h3>Zaznacz umiejętności, które posiadasz</h3>
+                        <h3>Zaznacz wymagania, które spełniasz</h3>
                         <mat-selection-list #Skills (selectionChange)="onSelection($event, Skills.selectedOptions.selected)">
                             <mat-list-option *ngFor="let skill of offer.skills" [value]='skill'>
                                 <p>{{skill.name}}</p>
@@ -90,4 +98,10 @@
 </main>
 <button (click)="test()">
     Kliknij
+</button>
+<button (click)="sendApplication()">
+    sendApplication
+</button>
+<button (click)="getApplications()">
+    getApplications
 </button>

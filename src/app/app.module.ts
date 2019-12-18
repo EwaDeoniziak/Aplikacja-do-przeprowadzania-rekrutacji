@@ -16,7 +16,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { JobDetailsComponent } from './home/components/job-details/job-details.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material';
+import {MatInputModule, MatSortModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from './shared/pipes/search.pipe';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -36,6 +36,11 @@ import { YourOffersComponent } from './admin/components/your-offers/your-offers.
 import { AddOfferComponent } from './admin/components/add-offer/add-offer.component';
 import { ApplicationsComponent } from './admin/components/applications/applications.component';
 import { BoldPipe } from './shared/pipes/bold.pipe';
+import {MatTableModule} from '@angular/material/table';
+import { OrderByPipe } from './shared/pipes/order-by.pipe';
+import { FilterPipe } from './shared/pipes/filter.pipe';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -56,6 +61,8 @@ import { BoldPipe } from './shared/pipes/bold.pipe';
     AddOfferComponent,
     ApplicationsComponent,
     BoldPipe,
+    OrderByPipe,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -77,9 +84,13 @@ import { BoldPipe } from './shared/pipes/bold.pipe';
     MatProgressSpinnerModule,
     MatRadioModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
   ],
-  providers: [],
+  providers: [OrderByPipe, FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

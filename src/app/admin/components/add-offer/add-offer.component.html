@@ -3,7 +3,7 @@
         <h2>Dodaj nową ofertę</h2>
         <form #addOfferForm="ngForm">
             <mat-tab-group class="my-tabs" mat-align-tabs="center">
-                <mat-tab label="Podstawowe dane">
+                <mat-tab label="1. Podstawowe dane">
                     <div class="content">
                         <div class="input-div">
                             <mat-form-field class="newOffer-input main-input" appearance="outline">
@@ -40,9 +40,9 @@
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="Wymagane umiejętności">
+                <mat-tab label="2. Wymagania">
                     <div class="content">
-                        <h3>Wymagane umiejętności</h3>
+                        <h3>Wymagania</h3>
                         <h3 class="smaller">Wybierz z poniższych i/lub dodaj nowe</h3>
                         <mat-selection-list *ngIf="skillsToCheck; else spinner" #Skills
                             (selectionChange)="onSelection($event, Skills.selectedOptions.selected)">
@@ -59,11 +59,11 @@
                             </mat-progress-spinner>
                         </ng-template>
                         <button mat-stroked-button (click)="showNewSkillForm()" class="outline-button">Dodaj inne
-                            umiejętności</button>
+                            wymagania</button>
                         <div class="skill-form" *ngIf="newSkillVisibility">
                             <div class="input-div">
                                 <mat-form-field class="newOffer-input main-input" appearance="outline">
-                                    <mat-label>Nazwa umiejętności</mat-label>
+                                    <mat-label>Nazwa wymagania</mat-label>
                                     <input matInput name="skillName" [(ngModel)]="skillName">
                                 </mat-form-field>
                             </div>
@@ -80,9 +80,9 @@
                                         name="skillDescription" [(ngModel)]="skillDescription"></textarea>
                                 </mat-form-field>
                             </div>
-                            <button mat-stroked-button (click)="addSkill()" class="outline-button">Dodaj nową umiejętność</button>
+                            <button mat-stroked-button (click)="addSkill()" class="outline-button">Dodaj nowe wymaganie</button>
                             <p class="invalid" *ngIf="invalidMessageVisibility">Wypełnij wszystkie pola</p>
-                            <h3 class="top-space">Nowe umiejętności:</h3>
+                            <h3 class="top-space">Nowe wymagania:</h3>
                             <ul *ngIf="skills">
                                 <li *ngFor="let skill of skills">
                                     <div class="new-skill">

@@ -1,7 +1,6 @@
 @import './../../../shared/variables&mixins.scss';
 .box{
     @include box;
-    margin-top: 100px;
     width: 800px;
     margin-left: auto;
     margin-right: auto;

@@ -1,8 +1,6 @@
 @import './../../../shared/variables&mixins.scss';
 .container {
     header{
-        background-color: $first-color;
-        padding-top: 60px;
         input{
             padding:10px;
             margin: 20px 30px 20px 30px;
@@ -21,7 +19,7 @@
 }
 .box{
     @include box;
-    margin-top: 100px;
+    margin-bottom: 20px;
 }
 .offers{
     @media (max-width: 600px) {
@@ -42,7 +40,7 @@ ul{
     li{
         .header{
             display: flex; 
-       justify-content: space-between;
+            justify-content: space-between;
         }
        border-bottom: 1px solid $light-gray;
     }
@@ -56,8 +54,15 @@ button {
     mat-icon{
         padding: 10px;
     }
+    @media (max-width: 600px) {
+        font-size: 10px;
+        margin: 5px;
+    }
 }
  
 .pink{
     color: $second-color;
+}
+.mat-expansion-panel-header {
+    padding: 30px;
 }

@@ -5,7 +5,7 @@
     <main>
         <div class="offers" *ngIf="yourOffers; else spinner">
             <div class="box">
-                <h2>Twoje oferty</h2>
+                <h2>Twoje oferty pracy</h2>
             </div>
             <mat-accordion class="my-expansion-panel offers">
                 <mat-expansion-panel class="offers" *ngFor="let item of yourOffers | search: searchInput">

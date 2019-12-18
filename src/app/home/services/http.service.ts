@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Offer, Post, Skill, newOffer } from 'src/app/shared/interfaces';
+import { Offer, Post, Skill, newOffer, Application, NewApplication } from 'src/app/shared/interfaces';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -28,6 +28,12 @@ export class HttpService {
    }
    addOffer(offer: newOffer){
      return this.http.post<newOffer>('/api/offers',offer);
+   }
+   getApplications(){
+     return this.http.get<Application[]>('/api/applications');
+   }
+   sendApplication(application: NewApplication){
+     return this.http.post<NewApplication>('/api/applications', application);
    }
 }
 

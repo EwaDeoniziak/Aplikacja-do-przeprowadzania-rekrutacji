@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import './app/shared/variables&mixins.scss';
-html, body { height: 100%; }
+html, body { height: 100%;}
 body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
@@ -71,10 +71,13 @@ body {
                 padding:10px 50px 10px 50px;
             }
         }
+        @media (max-width:650px) {
+            height: 60px;
+        }
     }
     .side-nav {
         padding-top: 70px;
-        width: 50%;
+        width: 70%;
         a{
             padding:30px;
         }
@@ -189,4 +192,8 @@ body {
   }
 .mat-list-text{
     font-size: 12px;
+}
+header{
+    padding-top: 20px;
+    background-color: $first-color;
 }

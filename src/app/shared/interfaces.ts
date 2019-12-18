@@ -44,3 +44,38 @@ export interface newOffer {
     skills: Skill[];
     skills_id: number[];
 }
+export interface Application {
+    id?: number;
+    offer_id: number;
+    first_name: string;
+    second_name: string;
+    phone_number: string;
+    date_of_birth: Date;
+    city: string;
+    education: number;
+    university: string;
+    field_of_study: string;
+    previous_job: string;
+    status?: number;
+    created_at?: null;
+    updated_at?: null;
+    skills: Skill[];
+    score: number;
+}
+export interface NewApplication {
+    offer_id: number;
+    first_name: string;
+    last_name: string;
+    phone_number: string;
+    date_of_birth: Date;
+    city: string;
+    education: number;
+    university: string;
+    field_of_study: string;
+    previous_job: string;
+    skills: Skill[];
+}
+export interface ColumnsToDisplay {
+    name: string;
+    data: any;
+  }

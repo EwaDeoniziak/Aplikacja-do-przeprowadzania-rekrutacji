@@ -1,7 +1,6 @@
 @import './../../../shared/variables&mixins.scss';
 .box{
     @include box;
-    margin-top: 40px;
     .contacts{
         display: grid;
         grid-template-columns: 10% 90%;

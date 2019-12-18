@@ -1,1 +1,47 @@
-<p>applications works!</p>
+<main *ngIf="offers&&applications">
+    <div class="box">
+        <h2>Nadesłane zgłoszenia</h2>
+        <mat-form-field>
+            <mat-label>Wybierz ofertę</mat-label>
+            <mat-select (ngModelChange)="filterApplications($event)" [(ngModel)]="checkedId" >
+                <mat-option [value]="null">
+                    Wszystkie
+                </mat-option>
+                <mat-option *ngFor="let offer of offers" [value]="offer.id">
+                    {{offer.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+        <ng-container matColumnDef="first_name">
+            <th mat-header-cell *matHeaderCellDef> Imię </th>
+            <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="second_name">
+            <th mat-header-cell *matHeaderCellDef> Nazwisko </th>
+            <td mat-cell *matCellDef="let element"> {{element.second_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="score">
+            <th mat-header-cell *matHeaderCellDef> Wynik </th>
+            <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+        </ng-container>
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                <div class="example-element-detail"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    Imię: {{element.first_name}}
+                    Nazwisko: {{element.second_name}}
+                    Telefon: {{element.phone_number}}
+                </div>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+    <button (click)="test()">Kliknij</button>
+</main>

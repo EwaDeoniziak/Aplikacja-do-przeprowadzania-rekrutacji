@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, from } from 'rxjs';
-import { Offer, Offer2, Post, Skill } from 'src/app/shared/interfaces';
+import { Offer, Offer2, Post, Skill, Application } from 'src/app/shared/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { HttpService } from './http.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class OffersService {
   //skills: Skill[];
   jobOffers$: Observable<Offer[]>;
   skills$: Observable<Skill[]>;
+  applications$: Observable<Application[]>;
   jobOffers2: Offer2[] = [
     {
       id: 1, name: 'PHP developer',
@@ -54,5 +56,6 @@ export class OffersService {
     //this.httpService.getOffers().subscribe((el: Offer[]) => this.jobOffers = el)
     this.jobOffers$=this.httpService.getOffers();
     this.skills$=this.httpService.getSkills();
+    this.applications$ = this.httpService.getApplications();
   }
 }

@@ -34,6 +34,8 @@ export class AddOfferComponent implements OnInit, OnDestroy {
   skills_id: number[] = [];
   skills: Skill[] = [];
 
+
+  skills_names: string[] = [];
   invalidMessageVisibility = false;
 
 
@@ -44,11 +46,14 @@ export class AddOfferComponent implements OnInit, OnDestroy {
 
   onSelection(event, value) {
     this.skills_id = [];
+    this.skills_names = [];
     this.selectedOptions = value;
     for (let i = 0; i < this.selectedOptions.length; i++) {
       this.skills_id.push(this.selectedOptions[i].value.id);
+      this.skills_names.push(this.selectedOptions[i].value.name);
     }
     console.log(this.skills_id);
+    console.log(this.skills_names);
   }
 
   showNewSkillForm() {
