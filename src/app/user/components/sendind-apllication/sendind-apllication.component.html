@@ -1,7 +1,7 @@
 <main>
     <div class="box" *ngIf="offer; else spinner">
         <h2>Aplikuj na stanowisko '{{offer.name}}'</h2>
-        <form>
+        <form #applyForm="ngForm" (ngSubmit)="sendApplication()">
             <mat-tab-group class="my-tabs" mat-align-tabs="center">
                 <mat-tab label="1. Dane osobowe"> 
                     <div class="content">
@@ -21,7 +21,7 @@
                         <div class="input-div">
                             <mat-form-field class="application-input main-input" appearance="outline">
                                 <mat-label>Data urodzenia</mat-label>
-                                <input matInput [matDatepicker]="myDatepicker" name="date" [(ngModel)]="date">
+                                <input required matInput [matDatepicker]="myDatepicker" name="date" [(ngModel)]="date">
                                 <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
                                 <mat-datepicker #myDatepicker></mat-datepicker>
                             </mat-form-field>
@@ -29,7 +29,7 @@
                         <div class="input-div">
                             <mat-form-field class="application-input main-input" appearance="outline">
                                 <mat-label>Nr telefonu</mat-label>
-                                <input matInput required name="pnoneNumber" [(ngModel)]="phoneNumber">
+                                <input type="tel" matInput required name="pnoneNumber" [(ngModel)]="phoneNumber">
                             </mat-form-field>
                         </div>
                         <div class="input-div">
@@ -83,6 +83,7 @@
                                 <p>{{skill.name}}</p>
                             </mat-list-option>
                         </mat-selection-list>
+                        <button type="submit" [disabled]="applyForm.invalid" mat-raised-button class="main-button" >Aplikuj</button>
                     </div>
                 </mat-tab>
             </mat-tab-group>

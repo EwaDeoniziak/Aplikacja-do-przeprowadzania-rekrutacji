@@ -41,6 +41,7 @@ import { OrderByPipe } from './shared/pipes/order-by.pipe';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
+import { JsonPipe, DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,7 @@ import {MatNativeDateModule} from '@angular/material';
     MatDatepickerModule,
     MatNativeDateModule 
   ],
-  providers: [OrderByPipe, FilterPipe],
+  providers: [OrderByPipe, FilterPipe, JsonPipe, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

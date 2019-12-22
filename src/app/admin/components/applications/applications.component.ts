@@ -25,69 +25,12 @@ export class ApplicationsComponent implements OnInit {
   applicationsVisible: Application[];
   applications: Application[];
 
-  applications1: Application[] = [
-    {
-      offer_id: 1,
-      first_name: 'imie1',
-      second_name: 'nazwisko1',
-      phone_number: '111',
-      date_of_birth: new Date(),
-      city: 'miasto1',
-      education: 1,
-      university: '',
-      field_of_study: '',
-      previous_job: 'praca1',
-      skills: [{
-        name: 'xd',
-        description: 'xd',
-        points: 2
-      }],
-      score: 30
-    },
-    {
-      id: 2,
-      offer_id: 1,
-      first_name: 'imie2',
-      second_name: 'nazwisko2',
-      date_of_birth: new Date(),
-      phone_number: '222',
-      city: 'miasto2',
-      education: 2,
-      university: '',
-      field_of_study: '',
-      previous_job: '',
-      skills: [{
-        name: 'xd2',
-        description: 'xd2',
-        points: 4
-      }],
-      score: 45
-    },
-    {
-      id: 3,
-      offer_id: 2,
-      first_name: 'imie3',
-      second_name: 'nazwisko3',
-      date_of_birth: new Date(),
-      phone_number: '333',
-      city: 'miasto3',
-      education: 3,
-      university: 'AGH',
-      field_of_study: 'infa',
-      previous_job: 'praca3',
-      skills: [{
-        name: 'xd3',
-        description: 'xd3',
-        points: 5
-      },
-      {
-        name: 'xd4',
-        description: 'xd4',
-        points: 5
-      }],
-      score: 40
-    },
-  ];
+  //SPINNER
+  color = 'primary';
+  mode = 'indeterminate';
+  value = 50;
+
+  
   dataSource;
   dataToDisplay = ['first_name', 'second_name', 'score'];
   columnsToDisplay = ['first_name', 'second_name', 'score'];
@@ -121,9 +64,21 @@ export class ApplicationsComponent implements OnInit {
     console.log(this.applicationsVisible);
     this.dataSource = new MatTableDataSource(this.applicationsVisible);
   }
+
+  getEducation(nr: number): string {
+    if (nr == 1){
+      return 'Szkoła podstawowa';
+    } else if(nr==2){
+      return 'Szkoła średnia';
+    } else{
+      return 'Szkoła wyższa';
+    }
+  }
   test() {
     console.log(this.checkedId);
   }
+
+
 }
 
 

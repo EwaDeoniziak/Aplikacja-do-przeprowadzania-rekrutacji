@@ -63,11 +63,11 @@ export interface Application {
     score: number;
 }
 export interface NewApplication {
-    offer_id: number;
+    offer_id: string;
     first_name: string;
-    last_name: string;
+    second_name: string;
     phone_number: string;
-    date_of_birth: Date;
+    date_of_birth: string;
     city: string;
     education: number;
     university: string;

@@ -1,7 +1,7 @@
-<main *ngIf="offers&&applications">
+<main *ngIf="offers&&applications ; else spinner">
     <div class="box">
         <h2>Nadesłane zgłoszenia</h2>
-        <mat-form-field>
+        <mat-form-field class="main-input">
             <mat-label>Wybierz ofertę</mat-label>
             <mat-select (ngModelChange)="filterApplications($event)" [(ngModel)]="checkedId" >
                 <mat-option [value]="null">
@@ -13,26 +13,38 @@
             </mat-select>
         </mat-form-field>
     </div>
-    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 myApplicationsList">
         <ng-container matColumnDef="first_name">
             <th mat-header-cell *matHeaderCellDef> Imię </th>
-            <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+            <td mat-cell *matCellDef="let element" class="myListItem"> {{element.first_name}} </td>
         </ng-container>
         <ng-container matColumnDef="second_name">
             <th mat-header-cell *matHeaderCellDef> Nazwisko </th>
-            <td mat-cell *matCellDef="let element"> {{element.second_name}} </td>
+            <td mat-cell *matCellDef="let element" class="myListItem"> {{element.second_name}} </td>
         </ng-container>
         <ng-container matColumnDef="score">
             <th mat-header-cell *matHeaderCellDef> Wynik </th>
-            <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+            <td mat-cell *matCellDef="let element" class="myListItem small"> {{element.score}} </td>
         </ng-container>
         <ng-container matColumnDef="expandedDetail">
             <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
                 <div class="example-element-detail"
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                    Imię: {{element.first_name}}
-                    Nazwisko: {{element.second_name}}
-                    Telefon: {{element.phone_number}}
+                   <div class="element"><span class="name">Imię: </span>{{element.first_name}}</div>
+                   <div class="element"><span class="name">Nazwisko: </span>{{element.second_name}}</div>
+                   <div class="element"><span class="name">Telefon: </span>{{element.phone_number}}</div>
+                   <div class="element"><span class="name">Data urodzenia: </span>{{element.date_of_birth}}</div>
+                   <div class="element"><span class="name">Miasto: </span>{{element.city}}</div>
+                   <div class="element"><span class="name">Ukończona szkoła: </span>{{getEducation(element.education)}}</div>
+                   <div class="element" *ngIf="element.education == 3"><span class="name">Uniwersytet: </span>{{element.university}}</div>
+                   <div class="element" *ngIf="element.education == 3"><span class="name">Kierunek: </span>{{element.field_of_study}}</div>
+                   <div class="element"><span class="name">Ostatnie stanowisko pracy: </span>{{element.previous_job}}</div>
+                   <div class="element"><span class="name">Umiejętności:</span> </div>
+                   <ul>
+                        <li *ngFor="let skill of element.skills">
+                            <mat-icon class="small">done</mat-icon>{{skill.name}}
+                        </li>
+                   </ul>
                 </div>
             </td>
         </ng-container>
@@ -45,3 +57,10 @@
     </table>
     <button (click)="test()">Kliknij</button>
 </main>
+<ng-template #spinner class="spinner">
+    <mat-progress-spinner class="spinner"
+    [color]="color"
+    [mode]="mode"
+    [value]="value">
+    </mat-progress-spinner>
+</ng-template>

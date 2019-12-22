@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { OffersService } from 'src/app/home/services/offers.service';
 import { Offer, Skill, Application, NewApplication } from 'src/app/shared/interfaces';
 import { HttpService } from 'src/app/home/services/http.service';
+import { JsonPipe, DatePipe } from '@angular/common';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sendind-apllication',
@@ -23,8 +25,6 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
   offerSubscription: Subscription;
   jobOffers: Offer[];
   selectedOptions = [];
-
-
   
   //DATA
   education = '1';
@@ -32,8 +32,8 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
   lastname = '';
   phoneNumber = '';
   city = '';
-  university = '';
-  fieldOfStudy = '';
+  university = 'brak';
+  fieldOfStudy = 'brak';
   previousJob = '';
   checkedSkills:Skill[] = [];
   date: Date;
@@ -49,7 +49,10 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private route: ActivatedRoute, private offersService: OffersService, private http: HttpService) {
+  constructor(private route: ActivatedRoute, 
+    private offersService: OffersService, 
+    private http: HttpService, private json: JsonPipe, 
+    private datePipe: DatePipe) {
     this.subscription = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -82,17 +85,17 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
     console.log(this.previousJob);
   }
   changeUniversityValue(){
-    this.university='';
-    this.fieldOfStudy='';
+    this.university='brak';
+    this.fieldOfStudy='brak';
   }
 
   sendApplication() {
     const application: NewApplication = {
-      offer_id: this.id,
+      offer_id: this.id+'',
       first_name: this.firstname,
-      last_name: this.lastname,
+      second_name: this.lastname,
       phone_number: this.phoneNumber,
-      date_of_birth: this.date,
+      date_of_birth: this.getDate(),
       city: this.city,
       education: parseInt(this.education) ,
       university: this.university,
@@ -102,9 +105,27 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
       //date: this.date
 
     }
-    this.http.sendApplication(application);
+    console.log(application);
+    console.log(this.json.transform(application));
+    this.http.sendApplication(application).subscribe(el => console.log(el));
+    this.education = '1';
+    this.firstname = '';
+    this.lastname = '';
+    this.phoneNumber = '';
+    this.city = '';
+    this.university = 'brak';
+    this.fieldOfStudy = 'brak';
+    this.previousJob = '';
+    this.date = null;
   }
   getApplications(){
     this.http.getApplications().subscribe(el => console.log(el));
+  }
+
+  getDate() : string{
+    const year = this.date.getFullYear();
+    const month = this.date.getMonth() + 1;
+    const day = this.date.getDate();
+    return year + '-' + month + '-' + day;
   }
 }

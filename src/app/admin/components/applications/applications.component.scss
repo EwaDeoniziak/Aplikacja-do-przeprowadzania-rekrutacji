@@ -5,6 +5,16 @@
 }
 table {
     width: 100%;
+    margin-top: 50px;
+    &.myApplicationsList{
+      box-shadow: $shadow;
+      .myListItem{
+        font-size: 12px;
+        @media (max-width:650px) {
+          font-size: 10px;
+        }
+      }
+    }
   }
   
   tr.example-detail-row {
@@ -25,7 +35,10 @@ table {
   
   .example-element-detail {
     overflow: hidden;
-    display: flex;
+    font-size: 12px;
+    @media (max-width:650px) {
+      font-size: 10px;
+    }
   }
   
   .example-element-diagram {
@@ -49,5 +62,24 @@ table {
   
   .example-element-description-attribution {
     opacity: 0.5;
+  }
+  .spinner{
+    margin-top: 50px;
+  }
+  .name{
+    font-weight: 600;
+  }
+  .element{
+    padding: 10px 0 20px 0;
+    ul{
+      padding-bottom: 20px;
+    }
+  }
+  .small{
+    font-size: 12px;
+    color: $second-color;
+    @media (max-width:650px) {
+      font-size: 10px;
+    }
   }
   
