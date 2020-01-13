@@ -12,3 +12,15 @@
 .mat-expansion-panel-header {
     padding: 40px;
 }
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .name{
+    }
+    .date {
+        font-size: 10px;
+        font-style: italic;
+        color: $first-color;
+    }
+}

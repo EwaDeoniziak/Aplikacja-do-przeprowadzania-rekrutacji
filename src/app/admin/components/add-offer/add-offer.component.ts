@@ -3,7 +3,7 @@ import { OffersService } from 'src/app/home/services/offers.service';
 import { Subscribable, Subscription } from 'rxjs';
 import { Skill, newOffer } from 'src/app/shared/interfaces';
 import { HttpService } from 'src/app/home/services/http.service';
-import { MatSelectionList } from '@angular/material';
+import { MatSelectionList, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-add-offer',
@@ -43,6 +43,17 @@ export class AddOfferComponent implements OnInit, OnDestroy {
   color = 'primary';
   mode = 'indeterminate';
   value = 50;
+
+
+  //MODAL
+  message = 'Ok';
+  action = '';
+  openSnackBar() {
+    this._snackBar.open(this.message, this.action, {
+      duration: 5000,
+    });
+    console.log(this.message, this.action);
+  }
 
   onSelection(event, value) {
     this.skills_id = [];
@@ -89,7 +100,13 @@ export class AddOfferComponent implements OnInit, OnDestroy {
       skills_id: this.skills_id
     }
     console.log(newOffer);
-    this.http.addOffer(newOffer).subscribe(el => console.log(el));
+    this.http.addOffer(newOffer).subscribe(res => {
+      this.message = 'Oferta została dodana pomyślnie!';
+      this.openSnackBar();
+    }, err => {
+      this.message = 'Coś poszło nie tak';
+      this.openSnackBar();
+    });
     this.offerService.jobOffers$.subscribe(el => console.log(el));
 
     // empty values after addOffer
@@ -102,7 +119,8 @@ export class AddOfferComponent implements OnInit, OnDestroy {
     this.skills = [];
   }
 
-  constructor(private offerService: OffersService, private http: HttpService) {
+  constructor(private offerService: OffersService, private http: HttpService,
+    private _snackBar: MatSnackBar) {
     this.skillsSubscription = this.offerService.skills$.subscribe(el => this.skillsToCheck = el);
   }
 

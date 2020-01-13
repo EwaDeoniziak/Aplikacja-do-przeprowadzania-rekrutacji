@@ -8,10 +8,16 @@ table {
     margin-top: 50px;
     &.myApplicationsList{
       box-shadow: $shadow;
-      .myListItem{
+      width: 100%;
+      padding: 0;
+      .myListItem {
         font-size: 12px;
+        width: 33%;
         @media (max-width:650px) {
           font-size: 10px;
+        }
+        @media (max-width:310px) {
+          font-size: 8px;
         }
       }
     }
@@ -27,10 +33,12 @@ table {
   
   tr.example-element-row:not(.example-expanded-row):active {
     background: #efefef;
+    padding-right: 0;
   }
   
   .example-element-row td {
     border-bottom-width: 0;
+    padding-right: 0;
   }
   
   .example-element-detail {
@@ -63,6 +71,18 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
+  th{
+    @media (max-width:650px) {
+      font-size: 10px;
+    }
+    @media (max-width:310px) {
+      font-size: 8px;
+    }
+    padding-right: 0;
+  }
+  th.mat-header-cell:last-of-type{
+    padding-right: 0;
+  }
   .spinner{
     margin-top: 50px;
   }
@@ -81,5 +101,23 @@ table {
     @media (max-width:650px) {
       font-size: 10px;
     }
+  }
+  .red-button {
+    background-color: rgb(218, 79, 79);
+    margin: 20px;
+    @media (max-width:660px) {
+      margin: 5px;
+    }
+  }
+  .green-button {
+    background-color: seagreen;
+    margin: 20px;
+    @media (max-width:660px) {
+      margin: 5px;
+    }
+  }
+  .divider{
+    text-align: center;
+    border-top: 1px solid $light-gray;
   }
   

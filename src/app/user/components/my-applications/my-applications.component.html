@@ -2,11 +2,11 @@
     <div class="box">
         <h2>Twoje zgłoszenia</h2>
     </div>
-        <mat-accordion class="my-expansion-panel">
-            <mat-expansion-panel *ngFor="let item of applications">
+        <mat-accordion *ngIf="myApplications; else spinner" class="my-expansion-panel">
+            <mat-expansion-panel *ngFor="let item of myApplications" (click)="test()">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  {{item.name}}
+                 <div class="header"><div class="name">{{item.first_name}} {{item.second_name}}</div> <div class="date">{{item.created_at}}</div> </div>
                 </mat-panel-title>
               </mat-expansion-panel-header>
               Status: {{checkStatusName(item)}}
@@ -15,4 +15,11 @@
               
             </mat-expansion-panel>
         </mat-accordion>
+        <ng-template #spinner>
+          <mat-progress-spinner class="spinner"
+          [color]="color"
+          [mode]="mode"
+          [value]="value">
+          </mat-progress-spinner>
+      </ng-template>
 </main>

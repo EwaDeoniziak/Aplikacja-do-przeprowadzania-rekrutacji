@@ -13,6 +13,8 @@ import { AdminMainPageComponent } from './admin/components/admin-main-page/admin
 import { YourOffersComponent } from './admin/components/your-offers/your-offers.component';
 import { AddOfferComponent } from './admin/components/add-offer/add-offer.component';
 import { ApplicationsComponent } from './admin/components/applications/applications.component';
+import {AuthGuard} from './guards/auth.guard';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -22,7 +24,7 @@ const routes: Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'auth', component: AuthComponent}
   ]},
-  {path: 'userPanel', component: UserPanelComponent, children: [
+  {path: 'userPanel', component: UserPanelComponent, canActivate: [AuthGuard], children: [
     {path: '', redirectTo: 'userMainPage', pathMatch: 'full'},
     {path: 'userMainPage', component: UserMainPageComponent},
     {path: 'jobList', component: JobListComponent},
@@ -30,7 +32,7 @@ const routes: Routes = [
     {path: 'sendingApplication/:id', component: SendindApllicationComponent},
     {path: 'contact', component: ContactComponent},
   ]},
-  {path: 'adminPanel', component: AdminPanelComponent, children: [
+  {path: 'adminPanel', component: AdminPanelComponent, canActivate: [AdminAuthGuard], children: [
     {path: '', redirectTo: 'adminMainPage', pathMatch: 'full'},
     {path: 'adminMainPage', component: AdminMainPageComponent},
     {path: 'yourOffers', component: YourOffersComponent},

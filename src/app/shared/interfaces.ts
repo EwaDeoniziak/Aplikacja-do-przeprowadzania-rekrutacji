@@ -79,3 +79,21 @@ export interface ColumnsToDisplay {
     name: string;
     data: any;
   }
+export interface User {
+    login: string;
+    password: string;
+    role: number;
+}
+
+export interface LoginUser {
+    email: string;
+    password: string;
+    //role: number;
+}
+
+export interface RegisterUser {
+    email: string;
+    name: string;
+    password: string;
+    c_password: string;
+}

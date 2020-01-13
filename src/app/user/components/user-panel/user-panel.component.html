@@ -10,7 +10,7 @@
             </a>
             <div class="dropdown-content">
                 <a routerLink="myApplications" mat-button routerLinkActive="active-link">Wysłane zgłoszenia</a>
-                <a mat-button>Wyloguj</a>
+                <a mat-button (click)="logout()">Wyloguj</a>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
             <a routerLink="jobList" mat-button routerLinkActive="active-link">Lista ofert</a>
             <a routerLink="contact" mat-button routerLinkActive="active-link">Kontakt</a>
             <a routerLink="myApplications" mat-button routerLinkActive="active-link">Wysłane zgłoszenia</a>
-            <a mat-button>Wyloguj</a>
+            <a mat-button (click)="logout()">Wyloguj</a>
         </div>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>

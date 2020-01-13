@@ -74,6 +74,16 @@ export class ApplicationsComponent implements OnInit {
       return 'Szkoła wyższa';
     }
   }
+  getStatus(element: Application): string {
+    if(element.status === 2) {
+      return 'Zaprosiłeś na kolejny etap rekrutacji';
+    }
+    else if(element.status === 3) {
+      return 'Wysłałeś odpowiedź odmowną';
+    } else {
+      return 'Jeszcze nie odpowiedziałeś na to zgłoszenie';
+    }
+  }
   test() {
     console.log(this.checkedId);
   }

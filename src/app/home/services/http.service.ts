@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Offer, Post, Skill, newOffer, Application, NewApplication } from 'src/app/shared/interfaces';
 import { Observable } from 'rxjs';
 import { JsonPipe } from '@angular/common';
@@ -31,13 +31,31 @@ export class HttpService {
      return this.http.post<newOffer>('/api/offers',offer);
    }
    getApplications(){
-     return this.http.get<Application[]>('/api/applications');
+    let headers = new HttpHeaders();
+    let token = localStorage.getItem('token');
+    headers = headers.append('Accept', 'application/json')
+    headers = headers.append('Authorization', `Bearer ${token}` );
+    return this.http.get<Application[]>('/api/applications', {headers});
    }
    sendApplication(application: NewApplication){
-     console.log(application);
-     console.log(this.jsonPipe.transform(application));
-     return this.http.post<NewApplication>('/api/applications', application);
+      let headers = new HttpHeaders();
+      let token = localStorage.getItem('token');
+      headers = headers.append('Accept', 'application/json')
+      headers = headers.append('Authorization', `Bearer ${token}` );
+      console.log(headers);
+      console.log(application);
+      console.log(headers);
+      console.log(this.jsonPipe.transform(application));
+      return this.http.post<NewApplication>('/api/applications', application, {headers});
      
    }
-}
 
+   getMyApplications() {
+    let headers = new HttpHeaders();
+    const token = localStorage.getItem('token');
+    headers = headers.append('Accept', 'application/json');
+    headers = headers.append('Authorization', `Bearer ${token}` );
+    console.log(headers);
+    return this.http.get<Application[]>('/api/allUserApplications', {headers});
+   }
+  }

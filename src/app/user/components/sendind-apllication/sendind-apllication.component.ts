@@ -6,6 +6,7 @@ import { Offer, Skill, Application, NewApplication } from 'src/app/shared/interf
 import { HttpService } from 'src/app/home/services/http.service';
 import { JsonPipe, DatePipe } from '@angular/common';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-sendind-apllication',
@@ -38,6 +39,16 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
   checkedSkills:Skill[] = [];
   date: Date;
 
+  //MODAL
+  message = 'Ok';
+  action = '';
+  openSnackBar() {
+    this._snackBar.open(this.message, this.action, {
+      duration: 5000,
+    });
+    console.log(this.message, this.action);
+  }
+
   onSelection(event, value) {
     this.checkedSkills = [];
     this.selectedOptions = value;
@@ -52,7 +63,8 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, 
     private offersService: OffersService, 
     private http: HttpService, private json: JsonPipe, 
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe,
+    private _snackBar: MatSnackBar) {
     this.subscription = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -107,7 +119,13 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
     }
     console.log(application);
     console.log(this.json.transform(application));
-    this.http.sendApplication(application).subscribe(el => console.log(el));
+    this.http.sendApplication(application).subscribe(res => {
+      this.message = 'Twoja aplikacja została pomyślnie wysłana!';
+      this.openSnackBar();
+    }, err => {
+      this.message = 'Coś poszło nie tak';
+      this.openSnackBar();
+    });
     this.education = '1';
     this.firstname = '';
     this.lastname = '';

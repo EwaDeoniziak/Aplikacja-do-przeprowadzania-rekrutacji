@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/home/services/http.service';
+import { Application} from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-my-applications',
@@ -7,13 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyApplicationsComponent implements OnInit {
   statusName: string;
-  applications: Application[] = [
+  myApplications: Application[];
+
+  //SPINNER
+  color = 'primary';
+  mode = 'indeterminate';
+  value = 50;
+  applications: Application2[] = [
     {id:1, name:'Front-end developer', status:0},
     {id:2, name:'Back-end developer', status:2},
     {id:3, name:'Project manager', status:1},
   ];
 
-  constructor() { }
+  constructor(private http: HttpService) { 
+    this.http.getMyApplications().subscribe(res => 
+      {
+      console.log(res);
+       this.myApplications = res;
+      });
+  }
 
   checkStatusName(item: Application): string{
     if(item.status === 1) {
@@ -30,10 +44,13 @@ export class MyApplicationsComponent implements OnInit {
 
   ngOnInit() {
   }
+  test(){
+    console.log('test');
+  }
 
 }
 
-export interface Application {
+export interface Application2 {
   id: number;
   name: string;
   status: number;
