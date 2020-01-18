@@ -84,9 +84,6 @@ export class ApplicationsComponent implements OnInit {
       return 'Jeszcze nie odpowiedziałeś na to zgłoszenie';
     }
   }
-  test() {
-    console.log(this.checkedId);
-  }
 
 
 }

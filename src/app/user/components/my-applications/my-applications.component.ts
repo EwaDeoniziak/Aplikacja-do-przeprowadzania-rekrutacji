@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/home/services/http.service';
-import { Application} from 'src/app/shared/interfaces';
+import { Application, MyApplication} from 'src/app/shared/interfaces';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-my-applications',
@@ -9,23 +10,20 @@ import { Application} from 'src/app/shared/interfaces';
 })
 export class MyApplicationsComponent implements OnInit {
   statusName: string;
-  myApplications: Application[];
+  myApplications: MyApplication[];
 
   //SPINNER
   color = 'primary';
   mode = 'indeterminate';
   value = 50;
-  applications: Application2[] = [
-    {id:1, name:'Front-end developer', status:0},
-    {id:2, name:'Back-end developer', status:2},
-    {id:3, name:'Project manager', status:1},
-  ];
+  applications: Application2[];
+  offerName: string;
 
   constructor(private http: HttpService) { 
     this.http.getMyApplications().subscribe(res => 
       {
       console.log(res);
-       this.myApplications = res;
+      this.myApplications = res;
       });
   }
 
@@ -44,9 +42,11 @@ export class MyApplicationsComponent implements OnInit {
 
   ngOnInit() {
   }
-  test(){
-    console.log('test');
-  }
+  // test(id: number){
+  //   this.http.getOneOffer(id).subscribe(el=> {
+  //     this.offerName=el.name;
+  //   });
+  // }
 
 }
 
@@ -55,3 +55,5 @@ export interface Application2 {
   name: string;
   status: number;
 }
+
+

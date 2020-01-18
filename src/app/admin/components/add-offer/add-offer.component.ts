@@ -52,7 +52,6 @@ export class AddOfferComponent implements OnInit, OnDestroy {
     this._snackBar.open(this.message, this.action, {
       duration: 5000,
     });
-    console.log(this.message, this.action);
   }
 
   onSelection(event, value) {
@@ -129,15 +128,5 @@ export class AddOfferComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.skillsSubscription.unsubscribe();
-  }
-
-  test() {
-    console.log(this.offerName)
-    console.log(this.salary)
-    console.log(this.offerDescription)
-    console.log(this.qualifications)
-    console.log(this.responsibilities)
-    console.log(this.skills)
-    console.log(this.skills_id)
   }
 }

@@ -20,16 +20,10 @@ export class AuthComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private _snackBar: MatSnackBar) { 
     this.authService.spinnerActive.subscribe(el =>{ this.spinnerActive = el;
-      console.log(this.spinnerActive);
     });
     this.authService.properData.subscribe( el => {this.properData = el; console.log(this.properData); } );
   }
 
-  // email1 = new FormControl('', [Validators.required, Validators.email]);
-  // email2 = new FormControl('', [Validators.required, Validators.email]);
-  // password1 = new FormControl('', [Validators.required]);
-  // password2 = new FormControl('', [Validators.required]);
-  // password3 = new FormControl('', [Validators.required]);
   hide = true;
   spinnerActive: boolean;
   properData: boolean;
@@ -43,26 +37,6 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  // getErrorEmail1Message() {
-  //   return this.email1.hasError('required') ? 'Musisz wprowadzić wartość' :
-  //       this.email1.hasError('email') ? 'Nieprawidłowy e-mail' :
-  //           '';
-  // }
-  // getErrorEmail2Message() {
-  //   return this.email2.hasError('required') ? 'Musisz wprowadzić wartość' :
-  //       this.email2.hasError('email') ? 'Nieprawidłowy e-mail' :
-  //           '';
-  // }
-  // getErrorPassword1Message() {
-  //   return this.password1.hasError('required') ? 'Musisz wprowadzić wartość' : '';
-  // }
-  // getErrorPassword2Message() {
-  //   return this.password2.hasError('required') ? 'Musisz wprowadzić wartość' : '';
-  // }
-  // getErrorPassword3Message() {
-  //   return this.password3.hasError('required') ? 'Musisz wprowadzić wartość' : '';
-  // }
   changeIsLoggedIn(value: boolean) {
     this.authService.changeIsLoggedIn(value);
   }
@@ -72,11 +46,11 @@ export class AuthComponent implements OnInit {
 
   register() {
     const user: RegisterUser = {name: this.name, email: this.email, password: this.password, c_password: this.c_password }
-    console.log(user);
+    
     this.authService.Register(user).subscribe(res => {
       this.message = 'Zostałeś zarejstrowany do serwisu!';
       this.openSnackBar();
-      console.log(res);
+      
     }, err => {
       this.message = 'Wprowadzone dane nie są poprawne';
       this.openSnackBar();
@@ -90,6 +64,6 @@ export class AuthComponent implements OnInit {
     this._snackBar.open(this.message, this.action, {
       duration: 5000,
     });
-    console.log(this.message, this.action);
+    
   }
 }

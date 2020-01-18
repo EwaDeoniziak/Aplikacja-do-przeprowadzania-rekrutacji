@@ -3,15 +3,41 @@
         <h2>Twoje zgłoszenia</h2>
     </div>
         <mat-accordion *ngIf="myApplications; else spinner" class="my-expansion-panel">
-            <mat-expansion-panel *ngFor="let item of myApplications" (click)="test()">
+            <mat-expansion-panel *ngFor="let item of myApplications">
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                 <div class="header"><div class="name">{{item.first_name}} {{item.second_name}}</div> <div class="date">{{item.created_at}}</div> </div>
+                 <div class="header"><div class="name">
+                  <div *ngIf="item.offer; else old">
+                    {{item.offer.name}}
+                  </div>
+                  <ng-template #old>
+                    Ta oferta została już usunięta
+                  </ng-template>
+                 </div> <div class="date">{{item.created_at}}</div> </div>
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              Status: {{checkStatusName(item)}}
+              <div *ngIf="item.offer">
+                <h6>Opis oferty</h6>
+                <p>{{item.offer.description}}</p>
+                <h6>Wymagania</h6>
+                <p>{{item.offer.qualifications}}</p>
+                <h6>Obowiązki</h6>
+                <p>{{item.offer.responsibilities}}</p>
+                <h6>Twoje dane</h6>
+                  <p><span class="heading">Imię i nazwisko: </span> {{item.first_name}} {{item.secons_name}}</p>
+                  <p><span class="heading">Telefon: </span>{{item.phone_number}}</p>
+                  <p><span class="heading">Data urodzenia: </span>{{item.date_of_birth}}</p>
+                  <p><span class="heading">Spełnione wymagania: </span></p>
+                    <ul class="paragraph">
+                      <li *ngFor="let skill of item.skills">
+                        <mat-icon class="small">done</mat-icon>{{skill.name}}
+                      </li>
+                    </ul>
+                  
+              </div>
               
-          
+              
+              
               
             </mat-expansion-panel>
         </mat-accordion>

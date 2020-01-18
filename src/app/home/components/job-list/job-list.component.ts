@@ -13,10 +13,7 @@ export class JobListComponent implements OnInit, OnDestroy {
 
   jobOffers: Offer[];
   offersSubscription: Subscription;
-  //jobOffers2: Offer2[];
-  //posts: Post[];
   searchInput = '';
-  //skills: Skill[];
 
   //SPINNER
   color = 'primary';
@@ -24,15 +21,6 @@ export class JobListComponent implements OnInit, OnDestroy {
   value = 50;
 
   constructor(private offerService: OffersService, private httpService: HttpService) {
-    //this.jobOffers2 = this.offerService.jobOffers2;
-    //this.jobOffers2 = this.offerService.jobOffers2;
-    // this.posts=this.offerService.posts;
-    // this.offerService.getPosts().subscribe(posty => this.posts = posty);
-    //this.httpService.getOffers().subscribe(el => this.jobOffers = el);
-    //this.httpService.getSkills().subscribe(el => this.skills=el);
-    
-      //this.jobOffers=this.offerService.jobOffers;
-      //console.log(this.jobOffers)
       this.offersSubscription = this.offerService.jobOffers$.subscribe(el => this.jobOffers=el);
     
   }

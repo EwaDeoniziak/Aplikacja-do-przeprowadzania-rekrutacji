@@ -62,6 +62,25 @@ export interface Application {
     skills: Skill[];
     score: number;
 }
+export interface MyApplication {
+    id?: number;
+    offer_id: number;
+    first_name: string;
+    second_name: string;
+    phone_number: string;
+    date_of_birth: Date;
+    city: string;
+    education: number;
+    university: string;
+    field_of_study: string;
+    previous_job: string;
+    status?: number;
+    created_at?: null;
+    updated_at?: null;
+    skills: Skill[];
+    score: number;
+    offer: Offer;
+}
 export interface NewApplication {
     offer_id: string;
     first_name: string;

@@ -46,7 +46,6 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
     this._snackBar.open(this.message, this.action, {
       duration: 5000,
     });
-    console.log(this.message, this.action);
   }
 
   onSelection(event, value) {
@@ -55,7 +54,6 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
     for (let i = 0; i < this.selectedOptions.length; i++) {
       this.checkedSkills.push(this.selectedOptions[i].value);
     }
-    console.log(this.checkedSkills);
 }
 
 
@@ -68,8 +66,6 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
     this.subscription = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
-    //this.offer = this.offersService.jobOffers.filter(el => el.id === this.id)[0];
-    //console.log(this.offer);
     this.offerSubscription = this.offersService.jobOffers$.subscribe(el => {
       this.jobOffers=el;
       this.offer = this.jobOffers.filter(el => el.id === this.id)[0];
@@ -77,24 +73,10 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
-    console.log(this.id);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
     this.offerSubscription.unsubscribe();
-  }
-  test(){
-    
-    console.log(parseInt(this.education));
-    console.log(this.firstname);
-    console.log(this.lastname);
-    console.log(this.phoneNumber);
-    console.log(this.city);
-    console.log(this.university);
-    console.log(this.fieldOfStudy);
-    console.log(this.checkedSkills);
-    console.log(this.date);
-    console.log(this.previousJob);
   }
   changeUniversityValue(){
     this.university='brak';
@@ -114,10 +96,8 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
       field_of_study: this.fieldOfStudy,
       previous_job: this.previousJob,
       skills: this.checkedSkills
-      //date: this.date
 
     }
-    console.log(application);
     console.log(this.json.transform(application));
     this.http.sendApplication(application).subscribe(res => {
       this.message = 'Twoja aplikacja została pomyślnie wysłana!';

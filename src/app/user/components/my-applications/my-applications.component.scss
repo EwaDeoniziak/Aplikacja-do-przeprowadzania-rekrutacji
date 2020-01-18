@@ -11,16 +11,60 @@
 }
 .mat-expansion-panel-header {
     padding: 40px;
+    @media (max-width:650px) {
+        padding: 10px;
+      }
 }
 .header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     .name{
+        @media (max-width:650px) {
+            font-size: 10px;
+          }
+          font-weight: 600;
+
     }
     .date {
         font-size: 10px;
         font-style: italic;
         color: $first-color;
+        @media (max-width:650px) {
+            font-size: 8px;
+          }
     }
+}
+p{
+    font-size: 12px;
+    @media (max-width:650px) {
+        font-size: 10px;
+      }
+    .heading{
+        font-weight: 600;
+    }
+}
+.paragraph{
+    font-size: 12px;
+    @media (max-width:650px) {
+        font-size: 10px;
+      }
+}
+.small{
+    font-size: 12px;
+    color: $second-color;
+    @media (max-width:650px) {
+      font-size: 10px;
+    }
+  }
+  h6{
+    font-size: 12px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    color: $second-color;
+    @media (max-width:650px) {
+        font-size: 10px;
+        margin-bottom: 10px;
+        margin-left: 10px;
+      }
 }

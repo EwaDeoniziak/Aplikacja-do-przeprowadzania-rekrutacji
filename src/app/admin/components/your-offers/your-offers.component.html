@@ -35,11 +35,7 @@
                             </li>
                         </ul>
                         <h3>Opcje</h3>
-                        <button mat-button>
-
-                            <mat-icon class="pink">edit</mat-icon>Edytuj
-                        </button>
-                        <button mat-button>
+                        <button mat-button (click)="delete(item.id)">
 
                             <mat-icon class="pink">delete</mat-icon>Usuń
                         </button>

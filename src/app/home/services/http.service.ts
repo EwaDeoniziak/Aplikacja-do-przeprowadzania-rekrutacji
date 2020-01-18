@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Offer, Post, Skill, newOffer, Application, NewApplication } from 'src/app/shared/interfaces';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { Offer, Post, Skill, newOffer, Application, NewApplication, MyApplication } from 'src/app/shared/interfaces';
 import { Observable } from 'rxjs';
 import { JsonPipe } from '@angular/common';
 
@@ -35,6 +35,7 @@ export class HttpService {
     let token = localStorage.getItem('token');
     headers = headers.append('Accept', 'application/json')
     headers = headers.append('Authorization', `Bearer ${token}` );
+    console.log(headers);
     return this.http.get<Application[]>('/api/applications', {headers});
    }
    sendApplication(application: NewApplication){
@@ -56,6 +57,21 @@ export class HttpService {
     headers = headers.append('Accept', 'application/json');
     headers = headers.append('Authorization', `Bearer ${token}` );
     console.log(headers);
-    return this.http.get<Application[]>('/api/allUserApplications', {headers});
+    return this.http.get<MyApplication[]>('/api/allUserApplications', {headers});
+   }
+
+   getOneOffer(id: number) {
+    let headers = new HttpHeaders();
+    const token = localStorage.getItem('token');
+    headers = headers.append('Accept', 'application/json');
+    headers = headers.append('Authorization', `Bearer ${token}` );
+    return this.http.get<Offer>('/api/offers/'+id+'', {headers});
+   }
+   deleteOffer(id:number) {
+     let headers = new HttpHeaders();
+    const token = localStorage.getItem('token');
+    headers = headers.append('Accept', 'application/json');
+    headers = headers.append('Authorization', `Bearer ${token}` );
+    return this.http.delete<Offer>('/api/offers/'+id+'', {headers});
    }
   }
