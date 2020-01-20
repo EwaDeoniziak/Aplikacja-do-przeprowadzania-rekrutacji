@@ -45,7 +45,7 @@ export class ApplicationsComponent implements OnInit {
     this.applicationsVisible = this.applications;
     this.orderBy.transform(this.applicationsVisible, 'score');
     this.applicationsVisible = this.filter.transform(this.applications, 'offer_id', this.checkedId);
-    console.log(this.applicationsVisible);
+    //console.log(this.applicationsVisible);
     this.dataSource = new MatTableDataSource(this.applicationsVisible);
     });
   }
@@ -60,8 +60,8 @@ export class ApplicationsComponent implements OnInit {
 
   filterApplications(checkedId: number) {
     this.applicationsVisible = this.filter.transform(this.applications, 'offer_id', checkedId);
-    console.log(this.applications);
-    console.log(this.applicationsVisible);
+    //console.log(this.applications);
+    //console.log(this.applicationsVisible);
     this.dataSource = new MatTableDataSource(this.applicationsVisible);
   }
 
@@ -74,18 +74,6 @@ export class ApplicationsComponent implements OnInit {
       return 'Szkoła wyższa';
     }
   }
-  getStatus(element: Application): string {
-    if(element.status === 2) {
-      return 'Zaprosiłeś na kolejny etap rekrutacji';
-    }
-    else if(element.status === 3) {
-      return 'Wysłałeś odpowiedź odmowną';
-    } else {
-      return 'Jeszcze nie odpowiedziałeś na to zgłoszenie';
-    }
-  }
-
-
 }
 
 

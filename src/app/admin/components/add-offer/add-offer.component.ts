@@ -62,8 +62,8 @@ export class AddOfferComponent implements OnInit, OnDestroy {
       this.skills_id.push(this.selectedOptions[i].value.id);
       this.skills_names.push(this.selectedOptions[i].value.name);
     }
-    console.log(this.skills_id);
-    console.log(this.skills_names);
+    //console.log(this.skills_id);
+    //console.log(this.skills_names);
   }
 
   showNewSkillForm() {
@@ -98,7 +98,7 @@ export class AddOfferComponent implements OnInit, OnDestroy {
       skills: this.skills,
       skills_id: this.skills_id
     }
-    console.log(newOffer);
+    //console.log(newOffer);
     this.http.addOffer(newOffer).subscribe(res => {
       this.message = 'Oferta została dodana pomyślnie!';
       this.openSnackBar();
@@ -106,7 +106,10 @@ export class AddOfferComponent implements OnInit, OnDestroy {
       this.message = 'Coś poszło nie tak';
       this.openSnackBar();
     });
-    this.offerService.jobOffers$.subscribe(el => console.log(el));
+    this.offerService.jobOffers$.subscribe(el => 
+      {
+        //console.log(el);
+      });
 
     // empty values after addOffer
     this.offerName = '';

@@ -21,7 +21,10 @@ export class AuthComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private _snackBar: MatSnackBar) { 
     this.authService.spinnerActive.subscribe(el =>{ this.spinnerActive = el;
     });
-    this.authService.properData.subscribe( el => {this.properData = el; console.log(this.properData); } );
+    this.authService.properData.subscribe( el => {
+      this.properData = el; 
+      //console.log(this.properData); 
+    } );
   }
 
   hide = true;
@@ -45,16 +48,22 @@ export class AuthComponent implements OnInit {
   }
 
   register() {
-    const user: RegisterUser = {name: this.name, email: this.email, password: this.password, c_password: this.c_password }
     
-    this.authService.Register(user).subscribe(res => {
-      this.message = 'Zostałeś zarejstrowany do serwisu!';
-      this.openSnackBar();
+      const user: RegisterUser = {name: this.name, email: this.email, password: this.password, c_password: this.c_password }
       
-    }, err => {
-      this.message = 'Wprowadzone dane nie są poprawne';
-      this.openSnackBar();
-    });
+      this.authService.Register(user).subscribe(res => {
+        this.message = 'Zostałeś zarejstrowany do serwisu!';
+        this.openSnackBar();
+        
+      }, err => {
+        this.message = 'Wprowadzone dane nie są poprawne lub są już zajęte';
+        this.openSnackBar();
+      });
+      this.name = '';
+      this.email = '';
+      this.password = '';
+      this.c_password = '';
+    
   }
 
   //MODAL

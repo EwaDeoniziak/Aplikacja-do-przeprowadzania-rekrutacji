@@ -22,7 +22,7 @@ export class MyApplicationsComponent implements OnInit {
   constructor(private http: HttpService) { 
     this.http.getMyApplications().subscribe(res => 
       {
-      console.log(res);
+      //console.log(res);
       this.myApplications = res;
       });
   }
@@ -42,11 +42,6 @@ export class MyApplicationsComponent implements OnInit {
 
   ngOnInit() {
   }
-  // test(id: number){
-  //   this.http.getOneOffer(id).subscribe(el=> {
-  //     this.offerName=el.name;
-  //   });
-  // }
 
 }
 

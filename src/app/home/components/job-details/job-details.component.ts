@@ -20,7 +20,7 @@ export class JobDetailsComponent implements OnInit {
   ngOnInit() {
     //this.authService.isLoggedInObs.subscribe(el => this.applyButtonVisibility = el);
     this.applyButtonVisibility = this.authService.IsLoggedIn();
-    console.log(this.applyButtonVisibility);
+    //console.log(this.applyButtonVisibility);
   }
   changeDetailsVisibility() {
     if (this.detailsVisibility === true) {

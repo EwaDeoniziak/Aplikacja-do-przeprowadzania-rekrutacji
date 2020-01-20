@@ -98,7 +98,7 @@ export class SendindApllicationComponent implements OnInit, OnDestroy {
       skills: this.checkedSkills
 
     }
-    console.log(this.json.transform(application));
+    //console.log(this.json.transform(application));
     this.http.sendApplication(application).subscribe(res => {
       this.message = 'Twoja aplikacja została pomyślnie wysłana!';
       this.openSnackBar();

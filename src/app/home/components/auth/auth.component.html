@@ -44,9 +44,10 @@
                     </mat-form-field>
                 </div>
                 <div>
+                    <p>Hasło musi zawierać minimum 4 znaki </p>
                     <mat-form-field class="inputField main-input" appearance="outline">
                         <mat-label>Wprowadź hasło</mat-label>
-                        <input required matInput [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="password">
+                        <input required minlength="4" matInput [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="password">
                         <button mat-icon-button matSuffix (click)="hide = !hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
@@ -55,16 +56,14 @@
                 <div>
                     <mat-form-field class="inputField main-input" appearance="outline">
                         <mat-label>Powtórz hasło</mat-label>
-                        <input required matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="c_password" name="cpassword">
+                        <input required minlength="4" matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="c_password" name="cpassword">
                         <button mat-icon-button matSuffix (click)="hide = !hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
                     </mat-form-field>
                 </div>
                 
-                <button mat-raised-button class="main-button" type="submit">Zarejestruj się</button>
+                <button mat-raised-button class="main-button" [disabled]="registerForm.invalid" type="submit">Zarejestruj się</button>
             </form>
-            <a routerLink="../../userPanel" (click)="changeIsLoggedIn(true)">Zaloguj do użytkownika </a>
-            <a href="../../adminPanel">Zaloguj do administratora</a>
         </div>
     </main>

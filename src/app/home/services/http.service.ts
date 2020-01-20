@@ -13,7 +13,9 @@ export class HttpService {
   skills$: Observable<Skill[]>;
 
   constructor(private http: HttpClient, private jsonPipe: JsonPipe) {
-    this.getOffers().subscribe(el => console.log(el));
+    this.getOffers().subscribe(el => {
+      //console.log(el);
+    });
     this.jobOffers$=this.getOffers();
     this.skills$=this.getSkills();
    }
@@ -35,7 +37,7 @@ export class HttpService {
     let token = localStorage.getItem('token');
     headers = headers.append('Accept', 'application/json')
     headers = headers.append('Authorization', `Bearer ${token}` );
-    console.log(headers);
+    //console.log(headers);
     return this.http.get<Application[]>('/api/applications', {headers});
    }
    sendApplication(application: NewApplication){
@@ -43,10 +45,10 @@ export class HttpService {
       let token = localStorage.getItem('token');
       headers = headers.append('Accept', 'application/json')
       headers = headers.append('Authorization', `Bearer ${token}` );
-      console.log(headers);
-      console.log(application);
-      console.log(headers);
-      console.log(this.jsonPipe.transform(application));
+      // console.log(headers);
+      // console.log(application);
+      // console.log(headers);
+      // console.log(this.jsonPipe.transform(application));
       return this.http.post<NewApplication>('/api/applications', application, {headers});
      
    }
@@ -56,7 +58,7 @@ export class HttpService {
     const token = localStorage.getItem('token');
     headers = headers.append('Accept', 'application/json');
     headers = headers.append('Authorization', `Bearer ${token}` );
-    console.log(headers);
+    //console.log(headers);
     return this.http.get<MyApplication[]>('/api/allUserApplications', {headers});
    }
 
